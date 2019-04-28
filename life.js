@@ -9,12 +9,27 @@ const spaceRate = 100;
 
 const cellSize = 10;
 
+// init grid
 for(let x = 0; x < Math.floor(canvas.width / cellSize); x++) {
   grid.push([]);
   for(let y = 0; y < Math.floor(canvas.height / cellSize); y++) {
     grid[x].push(false);
   }
 }
+
+function updatePattern(patternName) {
+  currPattern = PATTERNS[patternName];
+}
+
+// init pattern buttons
+Object.keys(PATTERNS).forEach(function(key, index) {
+  console.log("Pattern: " + key);
+  const button = document.createElement("button");
+  button.setAttribute("type", "button");
+  button.innerHTML = key;
+  button.setAttribute("onclick", 'updatePattern("' + key + '")');
+  buttonsSection.appendChild(button);
+});
 
 function drawGrid() {
   clearCanvas();
@@ -29,17 +44,10 @@ function drawGrid() {
   ctx.fillStyle = "red";
   ctx.font = "30px Arial";
   ctx.fillText("Generation: " + generation, 10, 50);
-  ctx.fillText("Press t to insert a pattern", 10, 100);
 }
 
-document.addEventListener("keydown", function(e) {
-  if(e.code == 'KeyT') {
-    let pattern = prompt("Pattern? Check console for list of patterns", "glider");
-    currPattern = PATTERNS[pattern];
-  }
-});
-
 document.addEventListener("mousedown", function(e) {
+  if(e.offsetX > canvas.width || e.offsetY > canvas.height) return;
   if(currPattern != null) {
     /*
      * Given cellSize = 10:

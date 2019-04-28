@@ -1,6 +1,7 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const keysPressed = {};
+const buttonsSection = document.getElementById("buttons");
 
 function fileLoaded(fileName) {
   console.log(fileName + " loaded");

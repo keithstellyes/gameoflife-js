@@ -1,6 +1,6 @@
 function parsePattern(src) {
   const lines = src.split('\n');
-  console.log(lines);
+
   const pat = [];
   for(let y = 0; y < lines.length; y++) {
     let x = 0;
@@ -33,7 +33,3 @@ const PATTERNS = {
                                ". . . . . . . . . . . X . . . X . . . . . . . . . . . . . . . . . . . .\n" +
                                ". . . . . . . . . . . . X X. . . . . . . . . . . . . . . . . . . . . . ")
 };
-
-Objects.keys(PATTERNS).forEach(function(key, index) {
-  console.log("Pattern: " + key);
-});
